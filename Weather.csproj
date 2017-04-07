@@ -35,6 +35,7 @@
     <Compile Include="weather.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="weatherService.cs" />
+    <Compile Include="city.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

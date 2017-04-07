@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Weather
 {
@@ -9,13 +10,24 @@ namespace Weather
 
 		public WeatherService()
 		{
-			this.totalCities = 0;
 			this.cities = new List<City>();
+			initMessage();
+		}
+
+		public void initMessage()
+		{
+			Console.WriteLine("Welcome To The Command Prompt Weather Serivce.");
+			Console.WriteLine("This Application Will Fetch The Weather For You.");
+			Console.WriteLine("To Begin, type \"add\" in the command prompt.");
+			Console.WriteLine("This will prompt you to add a city via zipcode.");
+			Console.WriteLine("You may add up to 10 Cities.");
+			Console.WriteLine("To fetch the weather for all your cities, type in \"fetch\"");
+			Console.WriteLine("Note: You are only allowed 10 requests per minute");
 		}
 
 		public void addCity(int zipcode)
 		{
-			totalCities.Add(new City(zipcode);
+			cities.Add(new City(zipcode));
 		}
 
 		public void getWeather()
@@ -33,7 +45,8 @@ namespace Weather
 			Console.WriteLine("Your Cities: ");
 			foreach (var city in cities)
 			{
-				Console.WriteLine(city.getCity());
+				//Console.WriteLine(city.getCity());
+				Console.WriteLine("city name");
 			}
 		}
 	}
