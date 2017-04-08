@@ -24,7 +24,11 @@ The application begins by prompting the user to add a zip code.
 
 ![image of startpage](docs/screens/start.png)
 
-This creates an instance of City class to store and request the weather data.  To properly deserialize the JSON coming in from the `HTTP` Request, a custom `Forcast` was created to store the needed variables.
+This creates an instance of City class to store and request the weather data.  
+
+![image of create](docs/screens/create.png)
+
+To properly deserialize the JSON coming in from the `HTTP` Request, a custom `Forcast` was created to store the needed variables.
 
 ```csharp
 class Forcast
