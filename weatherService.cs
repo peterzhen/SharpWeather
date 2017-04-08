@@ -12,12 +12,13 @@ namespace Weather
 		{
 			this.cities = new List<City>();
 			this.prompting = false;
-			initMessage();
 			promptLoop();
 		}
 
 		private void promptLoop()
 		{
+            initMessage();
+
 			while (true)
 			{
 				if (!prompting)
