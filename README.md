@@ -22,7 +22,7 @@ To handle the `JSON` response from the `HTTP` request, `Newtonsoft.Json` was use
 This terminal application is built with Object Oriented Principles in mind.  
 The application begins by prompting the user to add a zip code.
 
-![image of startpage][docs/screens/start.png]
+![image of startpage](docs/screens/start.png)
 
 This creates an instance of City class to store and request the weather data.  To properly deserialize the JSON coming in from the `HTTP` Request, a custom `Forcast` was created to store the needed variables.
 
@@ -49,4 +49,4 @@ class Forcast
 
 Using the `Forcast` class, data can be stored in the `City` instance to print out data.
 
-![image of weather][docs/sceens/weather.png]
+![image of weather](docs/screens/weather.png)
