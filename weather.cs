@@ -2,6 +2,9 @@
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+
 
 namespace Weather
 {
@@ -36,7 +39,9 @@ namespace Weather
 			StreamReader reader = new StreamReader(dataStream);
 			// Read the content.
 			string responseFromServer = reader.ReadToEnd();
-			string[] words = responseFromServer.Split(',');
+
+			var forcast = JsonConvert.DeserializeObject<Forcast.RootObject>(responseFromServer);
+			//Console.WriteLine(values);
 			// Display the content.
             // Cleanup the streams and the response.
             reader.Close ();
