@@ -16,6 +16,12 @@ namespace Weather
 			public Features features { get; set; }
 		}
 
+		public class Error
+		{
+			public string type { get; set; }
+			public string description { get; set; }
+		}
+
 		public class Image
 		{
 			public string url { get; set; }
