@@ -57,7 +57,6 @@ namespace Weather
 					return false;
 				}
 
-
 				// Cleanup the streams and the response.
 	            reader.Close();
 	            dataStream.Close();
