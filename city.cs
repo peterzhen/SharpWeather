@@ -6,11 +6,11 @@ using Newtonsoft.Json;
 
 namespace Weather
 {
-	public class City
+	class City
 	{
-		public string zipcode { get; set; }
-		public string cityName { get; set; }
-		public string degrees { get; set; }
+		private string zipcode;
+		private string cityName;
+		private string degrees;
 		private const string apiKey = "3cdcff508836ddfe";
 
 		public City(string zipcode)
@@ -21,6 +21,7 @@ namespace Weather
 
 		}
 
+		// Requests weather from API
 		public bool fetchWeather()
 		{
 			string URL = String.Format(
@@ -28,12 +29,13 @@ namespace Weather
 				apiKey,
 				this.zipcode);
 
-			// Create a request for the URL. 		
+			// Create a request for the URL	
 			WebRequest request = WebRequest.Create(URL);
 
-			// Get the response.
+			// Get the response
 			HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
+			// Check response status
 			if (response.StatusDescription.Equals("OK"))
 			{
 				// Get the stream containing content returned by the server.
@@ -68,11 +70,13 @@ namespace Weather
 			}
 		}
       
+		// Returns a string with weather information
         public string getWeather()
 		{
 			return (String.Format("{0} - {1}", this.cityName, this.degrees));
 		}
 
+		// Returns a string with city name
 		public string getCity()
 		{
 			return "City Name: " + this.cityName;

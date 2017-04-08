@@ -5,7 +5,9 @@ namespace Weather
 {
 	class WeatherService
 	{
+		// List to store user's cities
 		private List<City> cities;
+		// Variable used to regulate prompt printing order 
 		private bool prompting;
 
 		public WeatherService()
@@ -15,9 +17,10 @@ namespace Weather
 			promptLoop();
 		}
 
+		// Loop to handle prompt method
 		private void promptLoop()
 		{
-            initMessage();
+			initMessage();
 
 			while (true)
 			{
@@ -28,9 +31,11 @@ namespace Weather
 			}
 		}
 
+		// Prompts for user input
 		private void prompt()
 		{
 			this.prompting = true;
+			// Add first city when List count is 0
 			if (cities.Count == 0)
 			{
 				Console.Write("To begin, please enter a 5-digit US zipcode: ");
@@ -73,6 +78,7 @@ namespace Weather
 			this.prompting = false;
 		}
 
+		// Initial application message
 		private void initMessage()
 		{
 			Console.WriteLine("************************************************************");
@@ -88,20 +94,25 @@ namespace Weather
 			Console.WriteLine();
 		}
 
+		// Adds city to list
 		private void addCity(string zipcode)
 		{
 			City newCity = new City(zipcode);
+			// Checks if city is valid
 			if (newCity.fetchWeather())
 			{
+				// Add city 
 				cities.Add(newCity);
 				Console.WriteLine(String.Format("\n{0} Succesfully Added!\n", newCity.getCity()));
 			}
 			else
 			{
 				Console.WriteLine("\nIncorrect Zipcode, Try Again.\n");
+				// clean up newCity?
 			}
 		}
 
+		// Loops through list and prints weather information
 		private void getWeather()
 		{
 			Console.WriteLine("\nFetching Weather For Your Cities...");
@@ -113,6 +124,7 @@ namespace Weather
 			Console.WriteLine();
 		}
 
+		// Loops through List and prints all added city names
 		private void getCities()
 		{
 			Console.WriteLine("\nYour Cities: ");
