@@ -31,7 +31,7 @@ namespace Weather
 					}
 					else
 					{
-						Console.Write("What would you like to do (add, get, cities, exit)? ");
+						Console.Write("What would you like to do (add, weather, cities, exit)? ");
 						string prompt = Console.ReadLine();
 						Console.WriteLine();
 						switch (prompt)
@@ -43,7 +43,7 @@ namespace Weather
 								addCity(zipcode);
 								break;
 
-							case "get":
+							case "weather":
 								getWeather();
                                 this.prompting = false;
 								break;
@@ -77,7 +77,7 @@ namespace Weather
 			Console.WriteLine("To find the weather in your city, type in \"add\"");
 			Console.WriteLine("This will prompt you to add a zipcode.");
 			Console.WriteLine();
-			Console.WriteLine("To fetch the weather for all your cities, type in \"get\"");
+			Console.WriteLine("To fetch the weather for all your cities, type in \"weather\"");
 			Console.WriteLine();
 			Console.WriteLine("To get your current list of cities, type in \"cities\"");
 			Console.WriteLine();
