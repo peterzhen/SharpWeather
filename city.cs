@@ -45,10 +45,15 @@ namespace Weather
 
 				var forcast = JsonConvert.DeserializeObject<Forcast.RootObject>(responseFromServer);
 
-				if (forcast.current_observation == null) { return false; }
-
-				this.cityName = forcast.current_observation.display_location.full;
-				this.degrees = forcast.current_observation.temperature_string;
+				try
+				{
+					this.cityName = forcast.current_observation.display_location.full;
+					this.degrees = forcast.current_observation.temperature_string;
+				}
+				catch
+				{
+					return false;
+				}
 
 
 				// Cleanup the streams and the response.

@@ -3,51 +3,104 @@ using System.Collections.Generic;
 
 namespace Weather
 {
-	public class WeatherService
+	class WeatherService
 	{
 		private List<City> cities;
+		private bool prompting;
 
 		public WeatherService()
 		{
 			this.cities = new List<City>();
+			this.prompting = false;
 			initMessage();
+			promptLoop();
 		}
 
-		public void promptLoop()
+		private void promptLoop()
 		{
+			while (true)
+			{
+				if (this.prompting == false)
+				{
+					this.prompting = true;
+					if (cities.Count == 0)
+					{
+						Console.Write("To begin, please enter a 5-digit US zipcode: ");
+						string zipcode = Console.ReadLine();
+						addCity(zipcode);
+					}
+					else
+					{
+						Console.Write("What would you like to do (add, get, cities, exit)? ");
+						string prompt = Console.ReadLine();
+						Console.WriteLine();
+						switch (prompt)
+						{
+							case "add":
+								Console.Write("Adding City - Enter a 5-digit US zipcode: ");
+								string zipcode = Console.ReadLine();
+								Console.WriteLine();
+								addCity(zipcode);
+								break;
+
+							case "get":
+								getWeather();
+                                this.prompting = false;
+								break;
+
+							case "cities":
+								getCities();
+	                            this.prompting = false;
+								break;
+
+							case "exit":
+								Console.WriteLine("Goodbye");
+								Environment.Exit(0);
+								break;
+
+							default:
+								Console.WriteLine("Invalid Input, Try Again.\n");
+                                this.prompting = false;
+								break;
+						}
+					}
+				}
+			}
 		}
 
-		public void initMessage()
+		private void initMessage()
 		{
 			Console.WriteLine("************************************************************");
 			Console.WriteLine("Welcome To The Command Prompt Weather Serivce.");
 			Console.WriteLine("************************************************************");
 			Console.WriteLine();
-			Console.WriteLine("To Begin, type \"add\" in the command prompt.");
-			Console.WriteLine("This will prompt you to add a city.");
+			Console.WriteLine("To find the weather in your city, type in \"add\"");
+			Console.WriteLine("This will prompt you to add a zipcode.");
 			Console.WriteLine();
-			Console.WriteLine("To fetch the weather for all your cities, type in \"fetch\"");
-			Console.WriteLine("Note: You are only allowed 10 requests per minute");
+			Console.WriteLine("To fetch the weather for all your cities, type in \"get\"");
+			Console.WriteLine();
+			Console.WriteLine("To get your current list of cities, type in \"cities\"");
 			Console.WriteLine();
 		}
 
-		public void addCity(string zipcode)
+		private void addCity(string zipcode)
 		{
 			City newCity = new City(zipcode);
 			if (newCity.fetchWeather())
 			{
 				cities.Add(newCity);
-				Console.WriteLine(String.Format("{0} Succesfully Added!", newCity.getCity()));
+				Console.WriteLine(String.Format("\n{0} Succesfully Added!\n", newCity.getCity()));
 			}
 			else
 			{
-				Console.WriteLine("Incorrect Zipcode, Try Again.");
+				Console.WriteLine("\nIncorrect Zipcode, Try Again.\n");
 			}
+			this.prompting = false;
 		}
 
-		public void getWeather()
+		private void getWeather()
 		{
-			Console.WriteLine("Fetching Weather For Your Cities...");
+			Console.WriteLine("\nFetching Weather For Your Cities...");
 
 			foreach (var city in cities)
 			{
@@ -56,9 +109,9 @@ namespace Weather
 			Console.WriteLine();
 		}
 
-		public void getCities()
+		private void getCities()
 		{
-			Console.WriteLine("Your Cities: ");
+			Console.WriteLine("\nYour Cities: ");
 			foreach (var city in cities)
 			{
 				Console.WriteLine(city.getCity());
